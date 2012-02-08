@@ -1,6 +1,7 @@
 
 #usage
 
+```
 ./
 + static
   - js
@@ -10,6 +11,8 @@
   - index.html
   + routes
     - about/index.html
+```
+
 
 ```
 $ locally --static ./static --public ./public -port 8080
