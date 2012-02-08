@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+var connect = require('connect'),
+    program = require('commander');
+
+program
+   .version('0.0.1')
+   .option('-s, --static <directory>', 'directory for serving static files', 'static')
+   .option('-d, --public <directory>', 'directory for serving public files', 'public')
+   .parse(process.argv);
+
+program.on('static', function() {
+   console.log('setting static directory');
+   process.exit();
+});
+

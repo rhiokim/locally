@@ -1,1 +1,1 @@
-module.exports = require('./lib/localy');
+module.exports = require('./lib/locally');
