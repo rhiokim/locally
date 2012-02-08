@@ -1,0 +1,19 @@
+{
+  "author": "Rhio Kim <rhio.kim@gmail.com> (http://about.me/rhio)",
+  "name": "localy",
+  "description": "simple, locally webserver",
+  "version": "0.0.0",
+  "homepage": "about.me/rhio",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "~0.6.9"
+  },
+  "dependencies": {
+   "commander": "0.5.x",
+   "connect": "1.8.x"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
