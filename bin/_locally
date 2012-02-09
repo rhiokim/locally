@@ -1,16 +1,82 @@
-#!/usr/bin/env node
+#!/usr/bin/env node 
 
 var connect = require('connect'),
-    program = require('commander');
+    program = require('commander'),
+    fs = require('fs');
 
+/**
+ * process.argv pre process
+ */
 program
-   .version('0.0.1')
+   .version('0.1.0')
    .option('-s, --static <directory>', 'directory for serving static files', 'static')
    .option('-d, --public <directory>', 'directory for serving public files', 'public')
+   .option('-p, --port <port>', 'public port', 8080)
+   .option('-f, --file <configuration>', 'set configuration file', '.locally')
+   .option('-v, --vhost <virtual host>', 'set vhost information', 'localhost')
+   .option('-i, --init', 'interactive locally project initialize')
    .parse(process.argv);
 
-program.on('static', function() {
-   console.log('setting static directory');
-   process.exit();
-});
+if ( program.init || !program.file ) {
+   program.prompt('document root [default: ./public] :', function(dir) {
+      var conf = '';
+
+      console.log('document root %s', __dirname +'/'+ dir) ;  
+      conf += '-d '+ dir +'\n';
+
+      program.prompt('port [default: 8080] :', Number, function(port) {
+         if (port) {
+            conf += '-p '+ port +'\n';
+         }
+         console.log(port);
+
+         process.stdin.destroy();
+         console.log('end process')
+         fs.writeFile('.locally', conf, 'utf8', function(err) {
+            loadConfiguration();
+            createServer();
+         });
+      });
+   });
+}
+
+function loadConfiguration() {
+   // locally.opt support
+   try {
+      var opts = fs.readFileSync(__dirname +'/'+ program.file , 'utf8')
+         .trim()
+         .split(/\s+/);
+
+      process.argv = process.argv
+         .slice(0,2)
+         .concat(opts.concat(process.argv.slice(2)));
+   } catch(err) {
+
+   }
+}
+
+
+/**
+ * express binding
+ */
+function createServer() {
+   var app = connect(
+      connect.static(__dirname +'/'+ program.public),
+      connect.bodyParser()
+      );
+
+   app.use(function(req, res, next) {
+      if('GET' != req.method) {
+         return next();
+      }
+
+      res.statusCode = 302;
+      res.setHeader('Location', req.url);
+      res.end();
+   });
+
+   app.listen(program.port);
+
+   console.info('Serving started at http://localhost:'+ program.port);
+}
 

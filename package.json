@@ -1,11 +1,11 @@
 {
   "author": "Rhio Kim <rhio.kim@gmail.com> (http://about.me/rhio)",
-  "name": "localy",
-  "description": "simple, locally webserver",
+  "name": "locally",
+  "description": "simple, static file web server",
   "version": "0.0.0",
   "homepage": "about.me/rhio",
   "repository": {
-    "url": ""
+    "url": "git@github.com:rhiokim/locally.git"
   },
   "engines": {
     "node": "~0.6.9"
