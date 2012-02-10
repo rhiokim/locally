@@ -79,7 +79,7 @@ program.parse(process.argv);
  * connect binding
  */
 function createServer() {
-    var _static = __dirname +'/'+ program.public;
+    var _static = process.cwd() +'/'+ program.public;
     var app = connect(
         connect.static(_static),
         connect.bodyParser()
