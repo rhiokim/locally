@@ -9,6 +9,7 @@ locally 는 웹 개발 시 로컬 서버를 손쉽게 생성해서 테스트 개
 locally 는 connect 모듈을 기반으로 동작하는데 connect 모듈은 다양한 미들웨어를 추가해서 high class 기능등을 사용할 수 있다.  뿐만 아니라 손쉽게 로컬 웹 서버를 구축해서 마크업 환경을 설정할 수 있다.
 
 #usage
+
 **directory structure**
 
 ```
@@ -23,6 +24,12 @@ locally 는 connect 모듈을 기반으로 동작하는데 connect 모듈은 다
     - about/index.html
 ```
 
+**python**
+
+```python
+$ python -m SimpleHTTPServer -p 8080
+```
+
 
 **basic command**
 
@@ -33,14 +40,11 @@ $ locally -p 8080
 //full command
 $ locally --static ./static --public ./public -port 8080
 
+//debug mode
+$ locally --debug
+
 $ curl http://localhost:8080/
 $ curl http://localhost:8080/about
-```
-
-**python**
-
-```python
-$ python -m SimpleHTTPServer -p 8080
 ```
 
 **help cli**
