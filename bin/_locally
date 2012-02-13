@@ -32,7 +32,7 @@ program.on('--help', function() {
 function loadConfiguration() {
    // locally.opt support
    try {
-      var opts = fs.readFileSync(__dirname +'/.locally' , 'utf8')
+      var opts = fs.readFileSync(process.cwd() +'/.locally' , 'utf8')
          .trim()
          .split(/\s+/);
 
