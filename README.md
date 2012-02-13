@@ -72,3 +72,23 @@ Usage: _locally [options]
     $ locally -f ./conf/.locally   force adjust locally configuration file
 ```
 
+##options
+`locally` 는 기본적으로 실행 위치를 기준으로 `.locally` 파일로 미리 정의된 환경 옵션 셋을 지원한다.
+
+> 만약 이 파일이 없다면 `locally --help` 를 통해 cli 옵션을 활용할 수 있다. 
+
+```
+$ cd /path/to/my_web_project
+$ pwd
+/path/to/my_web_project
+
+$ cat .locally
+-w ./src/main
+-p 8081
+--debug
+
+$ locally
+document root :  /path/to/my_web_project/./src/main
+debug mode : true 
+Serving started at http://localhost:8081
+```
