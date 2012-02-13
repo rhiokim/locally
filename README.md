@@ -46,20 +46,25 @@ $ python -m SimpleHTTPServer -p 8080
 **help cli**
 
 ```
-$ node lib/locally.js --help
+$ locally --help
 
-  Usage: locally.js [options] [command]
-
-  Commands:
-
-    init 
-    locally setup webserver configuration
+Usage: _locally [options]
 
   Options:
 
-    -h, --help                output usage information
-    -V, --version             output the version number
-    -s, --static <directory>  directory for serving static files
-    -d, --public <directory>  directory for serving public files
+    -h, --help                  output usage information
+    -V, --version               output the version number
+    -s, --static <directory>    directory for serving static files
+    -w, --public <directory>    directory for serving public files
+    -d, --debug                 debug mode
+    -p, --port <port>           public port
+    -f, --file <configuration>  set configuration file
+    -n, --vhost <virtual host>  set vhost information
+
+ Examples:
+
+    $ locally -w ./public -p 8080  start basic locally server
+    $ locally -d                   debug mode, default <false>
+    $ locally -f ./conf/.locally   force adjust locally configuration file
 ```
 
