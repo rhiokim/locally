@@ -9,10 +9,12 @@ locally 는 connect 모듈을 기반으로 동작하는데 connect 모듈은 다
 
 #Install
 Require NPM(Node Package Manager)
+
 ```
 curl http://npmjs.org/install.sh | sh
 ```
 
+NPM module install to global
 
 ```
 $ npm install -g locally
@@ -47,7 +49,7 @@ $ python -m SimpleHTTPServer -p 8080
 
 **basic command**
 
-```
+```bash
 //simple command
 $ locally -p 8080
 
@@ -63,7 +65,7 @@ $ curl http://localhost:8080/about
 
 **help cli**
 
-```
+```bash
 $ locally --help
 
 Usage: _locally [options]
