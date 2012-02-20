@@ -54,7 +54,10 @@ $ python -m SimpleHTTPServer -p 8080
 $ locally -p 8080
 
 //full command
-$ locally --static ./static --public ./public -port 8080
+$ locally --public ./public -port 8080
+
+//short cut command
+$ locally -w ./public -p 8080
 
 //debug mode
 $ locally --debug
@@ -108,6 +111,11 @@ document root :  /path/to/my_web_project/./src/main
 debug mode : true 
 Serving started at http://localhost:8081
 ```
+
+#Roadmap
+* Virtual Host 환경 지원
+* fs.watcher 를 이용한 on the fly 기능
+* markdown preview 기능 지원
 
 #License
 
