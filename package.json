@@ -1,13 +1,14 @@
 {
   "author": "Rhio Kim <rhio.kim@gmail.com> (http://about.me/rhio)",
   "name": "locally",
-  "description": "simple, locally web server",
-  "version": "0.0.0",
-  "homepage": "http://about.me/rhio",
+  "description": "simple, locally web server for file serving & markup job. '$ python -m SimpleHTTPServer 8080' ",
+  "version": "0.1.2",
+  "homepage": "http://github.com/rhiokim/locally",
   "repository": {
+    "type": "git",
     "url": "git@github.com:rhiokim/locally.git"
   },
-  "main": "index",
+  "main": "index.js",
   "bin": { "locally": "./bin/locally", "_locally": "./bin/_locally" },
   "engines": {
     "node": "~0.6.9"
