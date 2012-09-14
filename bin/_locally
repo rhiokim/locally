@@ -2,13 +2,14 @@
 
 var connect = require('connect'),
     program = require('commander'),
-    fs = require('fs');
+    fs = require('fs'),
+    url = require('url');
 
 /**
  * process.argv pre process
  */
 program
-   .version('0.1.0')
+   .version('0.1.3')
    .usage('[options]')
    .option('-s, --static <directory>', 'directory for serving static files', 'static')
    .option('-w, --public <directory>', 'directory for serving public files', './')
@@ -32,7 +33,7 @@ program.on('--help', function() {
 function loadConfiguration() {
    // locally.opt support
    try {
-      var opts = fs.readFileSync(__dirname +'/.locally' , 'utf8')
+      var opts = fs.readFileSync(process.cwd() +'/.locally' , 'utf8')
          .trim()
          .split(/\s+/);
 
@@ -91,11 +92,16 @@ function createServer() {
     }
 
     app.use(function(req, res, next) {
+        var fstream, file;
+
         if('GET' != req.method) {
             return next();
         }
 
-        res.statusCode = 302;
+        //file = url.parse(req.url);
+        //console.log(_static + file.pathname);
+        //fstream = fs.readFileSync(_static + file.pathname);
+        res.statusCode = 301;
         res.setHeader('Location', req.url);
         res.end();
     });

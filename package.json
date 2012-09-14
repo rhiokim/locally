@@ -1,7 +1,7 @@
 {
   "author": "Rhio Kim <rhio.kim@gmail.com> (http://about.me/rhio)",
   "name": "locally",
-  "description": "simple, locally web server",
+  "description": "simple, locally web server for file serving & markup job. '$ python -m SimpleHTTPServer 8080' ",
   "version": "0.1.4",
   "homepage": "http://github.com/rhiokim/locally",
   "repository": {
