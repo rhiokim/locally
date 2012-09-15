@@ -14,7 +14,7 @@
     "node": "~0.6.x"
   },
   "dependencies": {
-   "commander": "0.5.x",
+   "commander": "1.0.x",
    "connect": "1.8.x"
   },
   "devDependencies": {},
