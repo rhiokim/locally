@@ -15,7 +15,9 @@
   },
   "dependencies": {
    "commander": "1.0.x",
-   "connect": "1.8.x"
+   "connect": "1.8.x",
+   "keypress": "x",
+   "colors": "x"
   },
   "devDependencies": {},
   "optionalDependencies": {}
