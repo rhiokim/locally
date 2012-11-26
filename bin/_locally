@@ -1,16 +1,16 @@
 #!/usr/bin/env node 
 
-var connect = require('connect'),
-    program = require('commander'),
-    fs = require('fs'),
+var fs = require('fs'),
     path = require('path'),
+    connect = require('connect'),
+    program = require('commander'),
     vhost = require('../lib/vhost');
 
 /**
  * process.argv pre process
  */
 program
-   .version('0.1.4')
+   .version('0.2.0')
    .usage('[options]')
    .option('-s, --static <directory>', 'directory for serving static files', 'static')
    .option('-w, --public <directory>', 'directory for serving public files', './')
@@ -44,7 +44,6 @@ function loadConfiguration() {
          .concat(opts.concat(process.argv.slice(2)));
 
       program.parse(process.argv);
-    
    } catch(err) {
    }
 }
@@ -130,7 +129,7 @@ function createServer() {
 
     console.info('document root : ', _static);
     console.info('debug mode :', program.debug );
-    console.info('Serving started at http://'+ program.vhost +':'+ program.port);
+    console.info('Serving started at http://'+ (program.vhost||'localhost') +':'+ program.port);
 }
 
 /**
