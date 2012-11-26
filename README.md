@@ -91,6 +91,9 @@ Usage: _locally [options]
     $ locally -f ./conf/.locally   force adjust locally configuration file
 ```
 
+## How to user on Windows 
+
+
 ##options
 `locally` 는 기본적으로 실행 위치를 기준으로 `.locally` 파일로 미리 정의된 환경 옵션 셋을 지원한다.
 
