@@ -1,22 +1,23 @@
 #!/usr/bin/env node 
 
-var connect = require('connect'),
+var fs = require('fs'),
+    path = require('path'),
+    connect = require('connect'),
     program = require('commander'),
-    fs = require('fs'),
-    url = require('url');
+    vhost = require('../lib/vhost');
 
 /**
  * process.argv pre process
  */
 program
-   .version('0.1.3')
+   .version('0.2.0')
    .usage('[options]')
    .option('-s, --static <directory>', 'directory for serving static files', 'static')
    .option('-w, --public <directory>', 'directory for serving public files', './')
    .option('-d, --debug', 'debug mode')
    .option('-p, --port <port>', 'public port', 8080)
    .option('-f, --file <configuration>', 'set configuration file')
-   .option('-n, --vhost <virtual host>', 'set vhost information', 'localhost');
+   .option('-c, --vhost <virtual host>', 'set vhost information');
 
 program.on('--help', function() {
     console.log(' Examples:');
@@ -42,7 +43,6 @@ function loadConfiguration() {
          .concat(opts.concat(process.argv.slice(2)));
 
       program.parse(process.argv);
-    
    } catch(err) {
    }
 }
@@ -58,8 +58,8 @@ function createConfiguration() {
         program.prompt('port: ', function(port) {
             conf.push('-p '+ port);
 
-            program.prompt('vhost: ', function(vhost) {
-                conf.push('-n '+ vhost);
+            program.prompt('cname: ', function(vhost) {
+                conf.push('-c '+ vhost);
                 process.stdin.destory();
 
                 fs.writeFileSync('.locally', conf.join('\n'), 'utf8');
@@ -80,7 +80,7 @@ program.parse(process.argv);
  * connect binding
  */
 function createServer() {
-    var _static = process.cwd() +'/'+ program.public;
+    var _static = path.resolve(process.cwd(), program.public);
     var app = connect(
         connect.static(_static),
         connect.bodyParser()
@@ -91,6 +91,9 @@ function createServer() {
         app.use(connect.logger());
     }
 
+    if (program.vhost) {
+    }
+
     app.use(function(req, res, next) {
         var fstream, file;
 
@@ -98,9 +101,6 @@ function createServer() {
             return next();
         }
 
-        //file = url.parse(req.url);
-        //console.log(_static + file.pathname);
-        //fstream = fs.readFileSync(_static + file.pathname);
         res.statusCode = 301;
         res.setHeader('Location', req.url);
         res.end();
@@ -110,7 +110,7 @@ function createServer() {
 
     console.info('document root : ', _static);
     console.info('debug mode :', program.debug );
-    console.info('Serving started at http://'+ program.vhost +':'+ program.port);
+    console.info('Serving started at http://'+ (program.vhost||'localhost') +':'+ program.port);
 }
 
 /**
