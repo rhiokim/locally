@@ -10,7 +10,7 @@ var fs = require('fs'),
  * process.argv pre process
  */
 program
-   .version('0.2.0')
+   .version('0.2.1')
    .usage('[options]')
    .option('-s, --static <directory>', 'directory for serving static files', 'static')
    .option('-w, --public <directory>', 'directory for serving public files', './')
